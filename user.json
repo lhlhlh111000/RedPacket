@@ -1,0 +1,35 @@
+[
+  {
+    "city": "海口市",
+    "deviceID": "772677145123715",
+    "gender": "M",
+    "header": "http://q.qlogo.cn/qqapp/1104935104/C6E1783968BF13EE7A8432A50FE941EA/100",
+    "nickName": "o0mebk5yvK",
+    "osType": "0",
+    "province": "海南省",
+    "token": "d77942d1-eb00-4269-86c1-e454c041c4b1",
+    "uid": "921920"
+  },
+  {
+    "city": "攀枝花市",
+    "deviceID": "342391485087083",
+    "gender": "M",
+    "header": "http://q.qlogo.cn/qqapp/1104935104/C6E1783968BF13EE7A8432A50FE941EA/100",
+    "nickName": "FidS8cg6aU",
+    "osType": "0",
+    "province": "四川省",
+    "token": "d77942d1-eb00-4269-86c1-e454c041c4b1",
+    "uid": "921920"
+  },
+  {
+    "city": "香港特别行政区",
+    "deviceID": "213576782292564",
+    "gender": "M",
+    "header": "http://q.qlogo.cn/qqapp/1104935104/C6E1783968BF13EE7A8432A50FE941EA/100",
+    "nickName": "U5uWeA3BZS",
+    "osType": "0",
+    "province": "香港特别行政区",
+    "token": "d77942d1-eb00-4269-86c1-e454c041c4b1",
+    "uid": "921920"
+  }
+]
