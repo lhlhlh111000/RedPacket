@@ -32,7 +32,13 @@ public class Main {
             public void run() {
                 // 抢
                 for(int i=0; i<users.size(); i++) {
-                    RedPacketUtil.postRed(redEntity.getVrid(), users.get(i));
+                    final UserInfoEntity user = users.get(i);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            RedPacketUtil.postRed(redEntity.getVrid(), user);
+                        }
+                    }).start();
                 }
 
                 if(index >= list.size() - 1) {
