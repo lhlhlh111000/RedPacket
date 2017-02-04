@@ -11,9 +11,23 @@ import java.util.Map;
  */
 public class RedPacketUtil {
 
-    public static void postRed(String vrid) {
+    public static void postRed(String vrid, UserInfoEntity user) {
         String key = "&key=alihb_123456";
         String params = "appid=alihb&device_id=352203064446739&header=http://wx.qlogo.cn/mmopen/AXdMoPDpJuawgn3SuQiaBC5QgdXq6jsHd1TFOqoot8GT0sSjY9YWiaS7wLQ3xian8zycbDe7FmGqJvK9I7sT4icM4sl1jX9a4TAJ/0&nickname=知以饱&package_name=com.martian.alihb&t=1485252009962&token=909a69e7-70a5-4b40-9e11-4e7f5232ef43&uid=922326&version_code=49&version_name=3.2.3&vrid=" + vrid + "&wx_appid=wxa8fb55d05684d979";
+        StringBuilder sb = new StringBuilder();
+        sb.append("appid=").append("alihb")
+                .append("&device_id=").append(user.getDeviceID())
+                .append("&header=").append(user.getHeader())
+                .append("&nickname=").append(user.getNickName())
+                .append("&package_name=com.martian.alihb")
+                .append("&t=").append(System.currentTimeMillis())
+                .append("&token=").append(user.getToken())
+                .append("&uid=").append(user.getUid())
+                .append("&version_code=49")
+                .append("&version_name=3.2.3")
+                .append("&vrid=").append(vrid)
+                .append("&wx_appid=wxa8fb55d05684d979");
+        params = sb.toString();
         String sign = "";
         try {
             sign = md5(params.concat(key));

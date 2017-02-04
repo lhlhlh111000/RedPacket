@@ -9,8 +9,10 @@ public class Main {
     private static int index = 0;
     private static List<RedEntity> list;
 
-    public static void main(String[] args) {
+    private static List<UserInfoEntity> users = new ArrayList<>();
 
+    public static void main(String[] args) {
+        users = OAuthUtil.getUserList();
         initLoad();
     }
 
@@ -29,7 +31,9 @@ public class Main {
             @Override
             public void run() {
                 // 抢
-                RedPacketUtil.postRed(redEntity.getVrid());
+                for(int i=0; i<users.size(); i++) {
+                    RedPacketUtil.postRed(redEntity.getVrid(), users.get(i));
+                }
 
                 if(index >= list.size() - 1) {
                     resetInitLoad();
