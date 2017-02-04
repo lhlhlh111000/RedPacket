@@ -1,6 +1,9 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,10 +13,9 @@ import java.util.Random;
  */
 public class OAuthUtil {
 
-
     public static void main(String[] args) {
         List<UserInfoEntity> list = new ArrayList<>();
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<10; i++) {
             UserInfoEntity user = initUser();
             if(null != user) {
                 list.add(user);
@@ -22,6 +24,50 @@ public class OAuthUtil {
 
         String json = JSONArray.toJSONString(list);
         System.out.print(json);
+    }
+
+    public static List<UserInfoEntity> getUserList() {
+        String json = readString();
+        if(json.isEmpty()) {
+            return null;
+        }
+
+        JSONArray array = JSONArray.parseArray(json);
+        List<UserInfoEntity> list = new ArrayList<>();
+        for(int i=0; i<array.size(); i++) {
+            JSONObject userObject = array.getJSONObject(i);
+
+            UserInfoEntity userInfoEntity = new UserInfoEntity();
+            userInfoEntity.setCity(userObject.getString("city"));
+            userInfoEntity.setDeviceID(userObject.getString("deviceID"));
+            userInfoEntity.setGender(userObject.getString("gender"));
+            userInfoEntity.setHeader(userObject.getString("header"));
+            userInfoEntity.setNickName(userObject.getString("nickName"));
+            userInfoEntity.setOsType(userObject.getString("osType"));
+            userInfoEntity.setProvince(userObject.getString("province"));
+            userInfoEntity.setToken(userObject.getString("token"));
+            userInfoEntity.setUid(userObject.getString("uid"));
+            list.add(userInfoEntity);
+        }
+        return list;
+    }
+
+    private static String readString() {
+        String str = "";
+        File file = new File("./user.json");
+        try {
+            FileInputStream in = new FileInputStream(file);
+            // size  为字串的长度 ，这里一次性读完
+            int size = in.available();
+            byte[] buffer = new byte[size];
+            in.read(buffer);
+            in.close();
+            str = new String(buffer, "UTF-8");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return str;
     }
 
     public static UserInfoEntity initUser() {
