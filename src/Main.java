@@ -44,10 +44,21 @@ public class Main {
                 startTask(list.get(index));
             }
         };
-        Timer timer = new Timer();
-        timer.schedule(task, parseDate(redEntity.getStartTime()));
-        System.out.print(redEntity.getStartTime() + "后开抢~");
-        System.out.print("\n");
+        Date date = parseDate(redEntity.getStartTime());
+        if(date.getTime() < System.currentTimeMillis()) {
+            if(index >= list.size() - 1) {
+                resetInitLoad();
+                return;
+            }
+            // 继续下个
+            index++;
+            startTask(list.get(index));
+        }else {
+            Timer timer = new Timer();
+            timer.schedule(task, parseDate(redEntity.getStartTime()));
+            System.out.print(redEntity.getStartTime() + "后开抢~");
+            System.out.print("\n");
+        }
     }
 
     private static Date parseDate(String dateStr) {
