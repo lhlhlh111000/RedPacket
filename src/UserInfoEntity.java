@@ -21,6 +21,8 @@ public class UserInfoEntity {
 
     private String token;
 
+    private String qqOpenId;
+
     public String getProvince() {
         return province;
     }
@@ -91,5 +93,13 @@ public class UserInfoEntity {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getQqOpenId() {
+        return qqOpenId;
+    }
+
+    public void setQqOpenId(String qqOpenId) {
+        this.qqOpenId = qqOpenId;
     }
 }

@@ -47,6 +47,7 @@ public class OAuthUtil {
             userInfoEntity.setProvince(userObject.getString("province"));
             userInfoEntity.setToken(userObject.getString("token"));
             userInfoEntity.setUid(userObject.getString("uid"));
+            userInfoEntity.setQqOpenId(userObject.getString("qqOpenId"));
             list.add(userInfoEntity);
         }
         return list;
@@ -91,7 +92,7 @@ public class OAuthUtil {
         String packageName = "com.martian.alihb";
         String qqToken = getQQToken();
         String qqAppID = "1104935104";
-        String qqOpenID = "C6E1783968BF13EE7A8432A50FE941EA";
+        String qqOpenID = getQQOpenID();
         String qqPlatform = "desktop_m_qq-10000144-android-2002-";
         String t = System.currentTimeMillis() + "";
         String versionCode = "49";
@@ -148,6 +149,7 @@ public class OAuthUtil {
             userInfoEntity.setProvince(province);
             userInfoEntity.setToken(token);
             userInfoEntity.setUid(uid);
+            userInfoEntity.setQqOpenId(qqOpenID);
 
             return userInfoEntity;
         }
@@ -198,6 +200,19 @@ public class OAuthUtil {
         String s = "0123456789";
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<10; i++) {
+            sb.append(s.charAt(new Random().nextInt(s.length())));
+        }
+        return sb.toString();
+    }
+
+    /**
+     * C6E1783968BF13EE7A8432A50FE941EA
+     * @return
+     */
+    private static String getQQOpenID() {
+        String s = "0123456789QWERTYUIOPASDFGHJKLZXCVBNM";
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<32; i++) {
             sb.append(s.charAt(new Random().nextInt(s.length())));
         }
         return sb.toString();
