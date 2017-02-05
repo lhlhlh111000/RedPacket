@@ -1,3 +1,5 @@
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -10,6 +12,8 @@ import java.util.Map;
  * Created by win10 on 2017/1/25.
  */
 public class RedPacketUtil {
+
+    public static long money = 0L;
 
     public static void postRed(String vrid, UserInfoEntity user) {
         String key = "&key=alihb_123456";
@@ -46,6 +50,14 @@ public class RedPacketUtil {
         System.out.print("\n");
         System.out.print(result);
         System.out.print("\n");
+
+        try {
+            JSONObject object = JSONObject.parseObject(result);
+            String moneyStr = object.getJSONObject("data").getString("money");
+            money = money + Integer.parseInt(moneyStr);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static String md5(String plainText) throws NoSuchAlgorithmException, UnsupportedEncodingException {

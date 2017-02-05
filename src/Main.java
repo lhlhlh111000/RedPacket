@@ -32,6 +32,18 @@ public class Main {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("总金额：" + RedPacketUtil.money + "");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+                System.out.print("\n");
+
                 // 抢
                 for(int i=0; i<users.size(); i++) {
                     final UserInfoEntity user = users.get(i);
