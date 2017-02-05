@@ -13,6 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         users = OAuthUtil.getUserList();
+        System.out.print("用户：" + users.size() + "人");
+        System.out.print("\n");
         initLoad();
     }
 
@@ -61,8 +63,10 @@ public class Main {
             startTask(list.get(index));
         }else {
             Timer timer = new Timer();
-            timer.schedule(task, parseDate(redEntity.getStartTime()));
-            System.out.print(redEntity.getStartTime() + "后开抢~");
+            Date dateStart = parseDate(redEntity.getStartTime());
+            timer.schedule(task, dateStart);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            System.out.print(formatter.format(dateStart) + "后开抢~");
             System.out.print("\n");
         }
     }
@@ -70,7 +74,8 @@ public class Main {
     private static Date parseDate(String dateStr) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            return formatter.parse(dateStr);
+            Date date = formatter.parse(dateStr);
+            return new Date(date.getTime() + 100);
         }catch (Exception e) {
             e.printStackTrace();
         }

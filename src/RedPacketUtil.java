@@ -38,8 +38,8 @@ public class RedPacketUtil {
 
         String url = "http://api.itaoxiaoshuo.com/rpaccount//auth/grab_virtual_redpaper.do".concat("?").concat(params).concat("&sign=").concat(sign);
 
-        System.out.print("\n");
-        System.out.print(url);
+//        System.out.print("\n");
+//        System.out.print(url);
 
         String result = sendPost(url, "");
 

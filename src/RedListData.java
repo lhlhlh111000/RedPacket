@@ -32,6 +32,8 @@ public class RedListData {
                 String vird = item.getString("vrid");
                 String time = item.getString("startTime");
                 list.add(new RedEntity(vird, time));
+                System.out.print(time);
+                System.out.print("\n");
             }
         }
         return list;
