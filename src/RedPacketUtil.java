@@ -35,7 +35,7 @@ public class RedPacketUtil {
         String sign = "";
         try {
             sign = md5(params.concat(key));
-            System.out.print(sign);
+//            System.out.print(sign);
         }catch (Exception  e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class RedPacketUtil {
             String moneyStr = object.getJSONObject("data").getString("money");
             money = money + Integer.parseInt(moneyStr);
         }catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
