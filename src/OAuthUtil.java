@@ -15,7 +15,7 @@ public class OAuthUtil {
 
     public static void main(String[] args) {
         List<UserInfoEntity> list = new ArrayList<>();
-        for(int i=0; i<13; i++) {
+        for(int i=0; i<30; i++) {
             UserInfoEntity user = initUser();
             if(null != user) {
                 list.add(user);
