@@ -15,6 +15,25 @@ public class RedPacketUtil {
 
     public static long money = 0L;
 
+    public static void initMoney() {
+        String str = "";
+        File file = new File("./money.txt");
+        try {
+            FileInputStream in = new FileInputStream(file);
+            // size  为字串的长度 ，这里一次性读完
+            int size = in.available();
+            byte[] buffer = new byte[size];
+            in.read(buffer);
+            in.close();
+            str = new String(buffer, "UTF-8");
+            money = Long.parseLong(str);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
     public static void postRed(String vrid, UserInfoEntity user) {
         String key = "&key=alihb_123456";
         String params = "appid=alihb&device_id=352203064446739&header=http://wx.qlogo.cn/mmopen/AXdMoPDpJuawgn3SuQiaBC5QgdXq6jsHd1TFOqoot8GT0sSjY9YWiaS7wLQ3xian8zycbDe7FmGqJvK9I7sT4icM4sl1jX9a4TAJ/0&nickname=知以饱&package_name=com.martian.alihb&t=1485252009962&token=909a69e7-70a5-4b40-9e11-4e7f5232ef43&uid=922326&version_code=49&version_name=3.2.3&vrid=" + vrid + "&wx_appid=wxa8fb55d05684d979";

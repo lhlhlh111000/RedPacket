@@ -12,6 +12,7 @@ public class Main {
     private static List<UserInfoEntity> users = new ArrayList<>();
 
     public static void main(String[] args) {
+        RedPacketUtil.initMoney();
         users = OAuthUtil.getUserList();
         System.out.print("用户：" + users.size() + "人");
         System.out.print("\n");
@@ -80,6 +81,7 @@ public class Main {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             System.out.print(formatter.format(dateStart) + "后开抢~");
             System.out.print("\n");
+            MoneySaveUtil.saveMoney(RedPacketUtil.money);
         }
     }
 
