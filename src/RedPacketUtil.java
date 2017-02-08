@@ -64,8 +64,22 @@ public class RedPacketUtil {
 //        System.out.print("\n");
 //        System.out.print(url);
 
-        String result = sendPost(url, "");
+        int count = 0;
+        String result = "";
+        while (count < 3) {
+            result = sendPost(url, "");
+            try {
+                JSONObject object = JSONObject.parseObject(result);
+                int errorCode = object.getIntValue("errcode");
+                if(1004 == errorCode) {
+                    count++;
+                }else {
+                    count = 100;
+                }
+            }catch (Exception e) {
 
+            }
+        }
         System.out.print("\n");
         System.out.print(result);
         System.out.print("\n");
