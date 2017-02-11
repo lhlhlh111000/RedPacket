@@ -66,7 +66,7 @@ public class RedPacketUtil {
 
         int count = 0;
         String result = "";
-        while (count < 3) {
+        while (count < 10) {
             result = sendPost(url, "");
             try {
                 JSONObject object = JSONObject.parseObject(result);
