@@ -64,6 +64,84 @@ public class RedListData {
             }
         }
 
+
+        // pro red
+        String result3 = RedPacketUtil.sendGet("http://api.itaoxiaoshuo.com/rpaccount/get_virtual_redpapers.do?appid=alihb&device_id=352203064446739&ostype=0&package_name=com.martian.alihb&qq_appid=1104935104&t=1486568148546&version_code=49&version_name=3.2.3&vrtype=2&wx_appid=wxa8fb55d05684d979&sign=07C4743B6D8D9694179FE818A635B2A3");
+        if(result3.isEmpty()) {
+            return list;
+        }
+
+        JSONObject object3 = JSONObject.parseObject(result3);
+        JSONObject objectData3 = null;
+        if(null != object3) {
+            objectData3 = object3.getJSONObject("data");
+        }
+        JSONArray array3 = null;
+        if(null != objectData3) {
+            array3 = objectData3.getJSONArray("redpapers");
+        }
+
+        if(null != array3) {
+            for(int i=0; i<array3.size(); i++) {
+                JSONObject item = array3.getJSONObject(i);
+                String vird = item.getString("vrid");
+                String time = item.getString("startTime");
+                list.add(new RedEntity(vird, time));
+            }
+        }
+
+
+        // guess red
+        String result4 = RedPacketUtil.sendGet("http://api.itaoxiaoshuo.com/rpaccount/get_virtual_redpapers.do?appid=alihb&device_id=352203064446739&ostype=0&package_name=com.martian.alihb&qq_appid=1104935104&t=1486568555363&version_code=49&version_name=3.2.3&vrtype=5&wx_appid=wxa8fb55d05684d979&sign=20CDC847160ED510D239CABD663608E3");
+        if(result4.isEmpty()) {
+            return list;
+        }
+
+        JSONObject object4 = JSONObject.parseObject(result4);
+        JSONObject objectData4 = null;
+        if(null != object4) {
+            objectData4 = object4.getJSONObject("data");
+        }
+        JSONArray array4 = null;
+        if(null != objectData4) {
+            array4 = objectData4.getJSONArray("redpapers");
+        }
+
+        if(null != array4) {
+            for(int i=0; i<array4.size(); i++) {
+                JSONObject item = array4.getJSONObject(i);
+                String vird = item.getString("vrid");
+                String time = item.getString("startTime");
+                list.add(new RedEntity(vird, time));
+            }
+        }
+
+
+        // guess red
+        String result5 = RedPacketUtil.sendGet("http://api.itaoxiaoshuo.com/rpaccount/get_virtual_redpapers.do?appid=alihb&device_id=352203064446739&ostype=0&package_name=com.martian.alihb&qq_appid=1104935104&t=1486568641189&version_code=49&version_name=3.2.3&vrtype=3&wx_appid=wxa8fb55d05684d979&sign=9E1846701AE3FC74CBC1F39BE6574183");
+        if(result5.isEmpty()) {
+            return list;
+        }
+
+        JSONObject object5 = JSONObject.parseObject(result5);
+        JSONObject objectData5 = null;
+        if(null != object5) {
+            objectData5 = object5.getJSONObject("data");
+        }
+        JSONArray array5 = null;
+        if(null != objectData5) {
+            array5 = objectData5.getJSONArray("redpapers");
+        }
+
+        if(null != array5) {
+            for(int i=0; i<array5.size(); i++) {
+                JSONObject item = array5.getJSONObject(i);
+                String vird = item.getString("vrid");
+                String time = item.getString("startTime");
+                list.add(new RedEntity(vird, time));
+            }
+        }
+
         // sort
         list.sort(new Comparator<RedEntity>() {
             @Override

@@ -89,7 +89,7 @@ public class Main {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date date = formatter.parse(dateStr);
-            return new Date(date.getTime() + 800);
+            return new Date(date.getTime() + 200);
         }catch (Exception e) {
             e.printStackTrace();
         }
