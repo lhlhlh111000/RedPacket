@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,6 +13,8 @@ import java.util.Random;
  * Created by win10 on 2017/2/4.
  */
 public class OAuthUtil {
+
+    static List<String> users = new ArrayList<>();
 
     public static void main(String[] args) {
         List<UserInfoEntity> list = new ArrayList<>();
@@ -87,7 +90,7 @@ public class OAuthUtil {
         String gender = "M";
         String header = "http://q.qlogo.cn/qqapp/" + getRandomNum() + "/C6E1783968BF13EE7A8432A50FE941EA/100";
         String osType = "0";
-        String nickName = getNickName();
+        String nickName = getNickName().replace("?", "").replace("!", "").replace(" ", "");
         String deviceId = getDeviceID();
         String packageName = "com.martian.alihb";
         String qqToken = getQQToken();
@@ -171,12 +174,10 @@ public class OAuthUtil {
     }
 
     private static String getNickName() {
-        String s = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<10; i++) {
-            sb.append(s.charAt(new Random().nextInt(s.length())));
+        if(0 == users.size()) {
+            initNicknameList();
         }
-        return sb.toString();
+        return users.get(new Random().nextInt(users.size() - 1));
     }
 
     /**
@@ -216,5 +217,30 @@ public class OAuthUtil {
             sb.append(s.charAt(new Random().nextInt(s.length())));
         }
         return sb.toString();
+    }
+
+    private static void initNicknameList() {
+        String str = "";
+        File file = new File("./temp.json");
+        try {
+            FileInputStream in = new FileInputStream(file);
+            // size  为字串的长度 ，这里一次性读完
+            int size = in.available();
+            byte[] buffer = new byte[size];
+            in.read(buffer);
+            in.close();
+            str = new String(buffer, "UTF-8");
+            if(str.isEmpty()) {
+                return;
+            }
+
+            JSONArray array = JSONArray.parseArray(str);
+            for(int i=0; i<array.size(); i++) {
+                users.add(array.getString(i));
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
